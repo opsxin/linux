@@ -127,7 +127,7 @@
 
    - 查看IP信息
 
-     ![ipaddr](.\ipaddr.PNG)
+     ![ipaddr](ipaddr.PNG)
 
    - virt-install内使用桥接网络
 
