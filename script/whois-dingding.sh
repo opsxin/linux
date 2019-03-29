@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DOMAINS=("google.cn" "baidu.com" "cheng.xin")
-DINDING="https://oapi.dingtalk.com/robot/send?access_token=48069c1f554a0ce416e85c3bbb381260b8c41352e1fb1af111b5a8d134cf0d00"
+DINDING="https://oapi.dingtalk.com/robot/send?access_token="
 HEAD='{"msgtype":"markdown", "markdown":{"title":"域名信息", "text":"'
 TAIL='"}}'
 
