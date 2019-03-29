@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DOMAINS=("google.cn" "baidu.com" "cheng.xin")
-DINDING="https://oapi.dingtalk.com/robot/send?access_token="
+DINGDING="https://oapi.dingtalk.com/robot/send?access_token="
 HEAD='{"msgtype":"markdown", "markdown":{"title":"域名信息", "text":"'
 TAIL='"}}'
 
@@ -36,6 +36,6 @@ do
     fi
 
     full_info=${HEAD}${body}${TAIL}
-    curl  -s "${DINDING}" -H 'Content-Type: application/json' -d "${full_info}"
+    curl  -s "${DINGDING}" -H 'Content-Type: application/json' -d "${full_info}"
 done
 
