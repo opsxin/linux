@@ -1,5 +1,3 @@
-Haproxy
-
 1. ### 简介^1^
 
    ​	HAproxy可以实现基于TCP（四层，SSH、SMTP、MYSQL）和HTTP（七层，WEB）应用代理软件，同时也可以作为负载均衡使用。
@@ -170,4 +168,4 @@ Haproxy
 > 1. [Haproxy配置文件详解](https://www.jianshu.com/p/b671610b5cea)
 > 2. [HAProxy安装配置](https://www.jianshu.com/p/92677d58b6f1)
 > 3. [HAProxy系列—配置文件详解](https://blog.csdn.net/u012758088/article/details/78643704)
-> 4. [[haproxy配置文件详解和ACL功能](https://www.cnblogs.com/f-ck-need-u/p/8502593.html)]
+> 4. [haproxy配置文件详解和ACL功能](https://www.cnblogs.com/f-ck-need-u/p/8502593.html)
