@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#* * * * * bash $0
+#0 9 * * * bash $0
 
 DOMAINS=("www.baidu.com" "www.qq.com")
 DINGDING="https://oapi.dingtalk.com/robot/send?access_token="
