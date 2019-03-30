@@ -1,13 +1,13 @@
 #!/bin/bash
 
-DOMAINS=("www.baidu.com")
+DOMAINS=("www.baidu.com" "www.qq.com")
 DINGDING="https://oapi.dingtalk.com/robot/send?access_token="
 HEAD='{"msgtype":"markdown", "markdown":{"title":"域名证书信息", "text":"'
 TAIL='"}}'
 
 for domain in ${DOMAINS[@]}
 do
-    expired_time=$(timeout 2 openssl s_client -connect ${domain}:443 2>/dev/null | openssl x509 -noout -enddate | cut -d= -f2)
+    expired_time=$(timeout 2 openssl s_client -connect ${domain}:443 2>/dev/null | openssl x509 -noout -enddate 2>/dev/null | cut -d= -f2)
     expired_time_format=$(date -d "${expired_time}" "+%Y/%m/%d %H:%M:%S")
 
     d1=$(date +%s -d ${expired_time_format%\ *})
