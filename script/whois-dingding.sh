@@ -19,8 +19,9 @@ do
 
         d1=$(date +%s -d ${EXPIRY_DATE})
         d2=$(date +%s -d $(date +%F))
+        days=$(((d1-d2)/86400))
 
-        body="查询域名:${DOMAIN_NAME} \n - **注册时间**:${CREATION_DATE} \n - **到期时间**:${EXPIRY_DATE} \n - **注册组织**:${REGISTRANT_ORGANIZATION} \n - **注册邮箱**:${REGISTRANT_CONTACT_EMAIL} \n - **注册商**:${SPONSORING_REGISTRAR} \n - **到期还有**:$(((d1-d2)/86400))天 \n - **查询时间**: $(date +%Y-%m-%d\ %H:%M:%S) [详情](http://whois.chinaz.com/${DOMAIN})"
+        body="查询域名:${DOMAIN_NAME} \n - **注册时间**:${CREATION_DATE} \n - **到期时间**:${EXPIRY_DATE} \n - **注册组织**:${REGISTRANT_ORGANIZATION} \n - **注册邮箱**:${REGISTRANT_CONTACT_EMAIL} \n - **注册商**:${SPONSORING_REGISTRAR} \n - **到期还有**:${days}天 \n - **查询时间**: $(date +%Y-%m-%d\ %H:%M:%S) [详情](http://whois.chinaz.com/${DOMAIN})"
     else
         DOMAIN_NAME=$(echo "${WHOIS_SOURCE}" | grep 'Domain Name' | cut -d: -f2)
         CREATION_DATE=$(echo "${WHOIS_SOURCE}" | grep 'Creation Date' | cut -d: -f2 | cut -dT -f1)
@@ -31,11 +32,16 @@ do
 
         d1=$(date +%s -d ${EXPIRY_DATE})
         d2=$(date +%s -d $(date +%F))
+        days=$(((d1-d2)/86400))
 
-        body="查询域名:${DOMAIN_NAME} \n - **注册时间**:${CREATION_DATE} \n - **过期时间**:${EXPIRY_DATE} \n - **注册组织**:${REGISTRANT_ORGANIZATION} \n - **注册省份**:${REGISTRANT_STATE_PROVINCE} \n - **注册国家**:${REGISTRANT_COUNTRY} \n - **到期还有**:$(((d1-d2)/86400))天 \n - **查询时间**: $(date +%Y-%m-%d\ %H:%M:%S) [详情](http://whois.chinaz.com/${DOMAIN})"
+        body="查询域名:${DOMAIN_NAME} \n - **注册时间**:${CREATION_DATE} \n - **过期时间**:${EXPIRY_DATE} \n - **注册组织**:${REGISTRANT_ORGANIZATION} \n - **注册省份**:${REGISTRANT_STATE_PROVINCE} \n - **注册国家**:${REGISTRANT_COUNTRY} \n - **到期还有**:${days}天 \n - **查询时间**: $(date +%Y-%m-%d\ %H:%M:%S) [详情](http://whois.chinaz.com/${DOMAIN})"
     fi
-
     full_info=${HEAD}${body}${TAIL}
-    curl  -s "${DINGDING}" -H 'Content-Type: application/json' -d "${full_info}"
+
+    #域名到期时间30天，15天，小于7天报警
+    if [[ ${days} -eq 30 || ${days} -eq 15 || ${days} -le 7 ]] 
+    then 
+        curl  -s "${DINGDING}" -H 'Content-Type: application/json' -d "${full_info}"
+    fi
 done
 
