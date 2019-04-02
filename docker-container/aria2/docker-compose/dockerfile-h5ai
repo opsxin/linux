@@ -1,0 +1,6 @@
+FROM corfr/h5ai
+
+ADD https://github.com/mayswind/AriaNg/releases/download/1.0.1/AriaNg-1.0.1.zip / 
+RUN /usr/bin/unzip /AriaNg-1.0.1.zip -d /usr/share/aria2 \
+    && rm -f /AriaNg-1.0.1.zip /h5ai.zip
+

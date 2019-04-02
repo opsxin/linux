@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  www:
+    build: 
+      context: ./
+      dockerfile: ./dockerfile-h5ai
+    ports: 
+      - "8080:80"
+    volumes:
+      - "./nginx-default.conf:/etc/nginx/sites-enabled/h5.conf"
+      - "data:/var/www"
+      
+  aria2:
+    build:
+      context: ./
+      dockerfile: ./dockerfile-aria2
+    ports:
+      - "6800:6800"
+    volumes:
+      - "./aria2.conf:/etc/aria2/aria2.conf"
+      - "data:/var/www"
+    environment:
+      - TOKEN=hins
+
+volumes:
+    data:
