@@ -94,7 +94,8 @@
    ```bash
    a=
    b="abc"
-   #如果var为空，则返回value，并将value赋值给var；如果var不为空，则返回var本身的值。var不为空时，var值不会被改变；var为空时，var的值会被设置成指定值。
+   #如果var为空，则返回value，并将value赋值给var；如果var不为空，则返回var本身的值。
+   #var不为空时，var值不会被改变；var为空时，var的值会被设置成指定值。
    echo ${a:=123}
    #123
    echo ${a}
@@ -104,7 +105,8 @@
    echo ${b}
    #abc
    
-   #如果var为空，则返回value；如果var不为空，则返回var的值。无论var是否为空，var本身的值不会改变。
+   #如果var为空，则返回value；如果var不为空，则返回var的值。
+   #无论var是否为空，var本身的值不会改变。
    echo ${a:-123}
    #123
    echo ${a}
@@ -114,7 +116,8 @@
    echo ${b}
    #abc
    
-   #如果var不为空，则返回value；如果var为空，则返回空值。无论var是否为空，var本身的值不会改变。
+   #如果var不为空，则返回value；如果var为空，则返回空值。
+   #无论var是否为空，var本身的值不会改变。
    echo ${a:+123}
    # 
    echo ${a}
@@ -124,7 +127,8 @@
    echo ${b}
    #abc
    
-   #如果var为空，那么在当前终端打印error_info；如果var的值不为空，则返回var的值。无论var是否为空，var本身的值都不会改变。
+   #如果var为空，那么在当前终端打印error_info；如果var的值不为空，则返回var的值。
+   #无论var是否为空，var本身的值都不会改变。
    echo ${a:?123}
    # bash: a: 123
    echo ${a}
@@ -135,7 +139,10 @@
    #abc
    ```
 
-   
+
+
+
+
 
 > [字符串处理(一)](http://www.zsythink.net/archives/2276)
 >
