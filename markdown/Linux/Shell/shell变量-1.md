@@ -126,7 +126,7 @@
         shift n 
         ```
 
-      5. ###### 其他创建方式
+   5. ###### 其他创建方式
 
          ```bash
          declare var="abc"
@@ -141,8 +141,3 @@
    
 
    > [bash变量详解](http://www.zsythink.net/archives/279)
-
-   ​     
-
-
-
