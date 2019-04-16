@@ -1,14 +1,13 @@
 1. ###### 模块基本使用^1^
 
-
-  ```bash
-  #查看已有模块
-  ansible-doc -l
-  #查询模块Help
-  ansible-doc -s ping
-  #使用模块
-  ansible A(主机) -m fetch(模块名) -a 'src=/etc/hosts dest=/root'(参数)
-  ```
+   ```bash
+   #查看已有模块
+   ansible-doc -l
+   #查询模块Help
+   ansible-doc -s ping
+   #使用模块
+   ansible A(主机) -m fetch(模块名) -a 'src=/etc/hosts dest=/root'(参数)
+   ```
 
 2. ###### copy模块
 
@@ -55,6 +54,24 @@
    ansible A -m lineinfile -a 'dest=/root/test regexp="^a" state=absent'
    #正则替换,如果需要引用匹配出来的内容，backrefs一定要为yes；\1不能加""号
    ansible A -m lineinfile -a 'dest=/root/test regexp="\(test\)-\(02\)" line=\1 backrefs=yes' 
+   ```
+
+6. ###### find模块
+
+   ```bash
+   #查找**包含字符串**的文件及子目录内的文件,包括隐藏文件
+   ansible A -m find -a 'paths=/root contains=".*test.*" recurse=yes hidden=yes'
+   #查找文件名，类型为文件(file)或路径(directory)
+   ansible A -m find -a 'paths=/root patterns="test*" file_type=file'
+   #查找文件，两周内，大于1K，使用正则匹配
+   ansible A -m find -a 'paths=/root patterns="test.*" use_regex=yes age=-2w size=1K'
+   ```
+
+7. ###### replace模块
+
+   ```bash
+   #替换END为end，设置backup为yes可备份原文件
+   ansible A -m replace -a 'dest=/root/test.txt regexp="END" replace=end'
    ```
 
    
