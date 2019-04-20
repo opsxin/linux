@@ -46,7 +46,7 @@
       5. Real Server比对发现目标为自己的IP，开始构建响应报文发回给Director Server。 此时报文的源IP为RIP，目标IP为CIP。 
       6. Director Server在响应客户端前，此时会将源IP地址修改为自己的VIP地址，然后响应给客户端。 此时报文的源IP为VIP，目标IP为CIP。
    
-   2. 特点
+   2. ###### 特点
       - RS尽可能使用私有地址，RS的网关必须指向DIP。
       - DIP和RIP必须在同一个网段内。
       - 请求和响应报文都需要经过Director Server，高负载场景中，Director Server易成为性能瓶颈。
