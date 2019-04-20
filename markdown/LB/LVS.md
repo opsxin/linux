@@ -40,21 +40,19 @@
       ![LVS/NAT原理](lvs-nat.png)
 
       1. 当用户请求到达Director Server，此时请求的数据报文会先到内核空间的PREROUTING链。 此时报文的源IP为CIP，目标IP为VIP。 
-2. PREROUTING检查发现数据包的目标IP是本机，将数据包送至INPUT链。
+      2. PREROUTING检查发现数据包的目标IP是本机，将数据包送至INPUT链。
       3. IPVS比对数据包请求的服务是否为集群服务，若是，修改数据包的目标IP地址为后端服务器IP，然后将数据包发至POSTROUTING链。 此时报文的源IP为CIP，目标IP为RIP。
-4. POSTROUTING链通过选路，将数据包发送给Real Server。
+      4. POSTROUTING链通过选路，将数据包发送给Real Server。
       5. Real Server比对发现目标为自己的IP，开始构建响应报文发回给Director Server。 此时报文的源IP为RIP，目标IP为CIP。 
-6. Director Server在响应客户端前，此时会将源IP地址修改为自己的VIP地址，然后响应给客户端。 此时报文的源IP为VIP，目标IP为CIP。
-      
-2. ###### 特点
+      6. Director Server在响应客户端前，此时会将源IP地址修改为自己的VIP地址，然后响应给客户端。 此时报文的源IP为VIP，目标IP为CIP。
    
-   - RS尽可能使用私有地址，RS的网关必须指向DIP。
+   2. 特点
+      - RS尽可能使用私有地址，RS的网关必须指向DIP。
       - DIP和RIP必须在同一个网段内。
       - 请求和响应报文都需要经过Director Server，高负载场景中，Director Server易成为性能瓶颈。
       - 支持端口映射。
       - RS可以使用任意操作系统。
       - 缺陷：对Director Server压力会比较大，请求和响应都需经过director server。
-   
 6. ##### LVS/DR原理和特点
 
    1. ###### 原理
