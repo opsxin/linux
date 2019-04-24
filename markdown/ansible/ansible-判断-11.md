@@ -1,22 +1,22 @@
-1. ###### when
+1. ##### when
 
-  ```yaml
-  ---
-  - hosts: A
-    	remote_user: root
-    	tasks:
-   	- name: ls /root
-     	shell: 
-       	ls /root
-     	register: return_result
-   	- name: debug msg
-     		debug:
-       msg: "成功执行"
-     	#when相当于if
-     	when: return_result.rc == 0
-  ```
+   ```yaml
+   ---
+   - hosts: A
+     remote_user: root
+     tasks:
+       - name: ls /root
+         shell: 
+           ls /root
+         register: return_result
+       - name: debug msg
+         debug:
+           msg: "成功执行"
+         #when相当于if
+         when: return_result.rc == 0
+   ```
 
-2. ###### test
+2. ##### test
 
    ```yaml
    ---
@@ -77,5 +77,123 @@
    number（是否为数字）
    ```
 
-   
+3. ##### block
+
+   ```yaml
+   --- 
+   - hosts: A
+     remote_user: root
+     tasks: 
+       - name: block 1
+         debug: 
+           msg: "block 1"
+       - block: 
+         - name: block 2.1
+           debug: 
+             msg: "block 2.1"
+         - name: block 2.2
+           debug: 
+             msg: "block 2.2"
+         when: YES  
+   #输出
+   block 1
+   block 2.1
+   block 2.2
+   ```
+
+   ```yaml
+   ---
+   - hosts: A
+     remote_user: root
+     tasks: 
+       - name: ls /root/test
+         shell: 
+           ls /root/test
+         register: return_valus
+         ignore_errors: true
+       - name: debug msg
+         debug: 
+           msg: "have a error"
+         #shell执行失败
+         when: return_valus.rc != 0
+   ```
+
+   ```yaml
+   ---
+   - hosts: A
+     remote_user: root
+     tasks: 
+       - block: 
+         - name: ls /root/sss
+           shell: ls /root/sss
+         - name: ls /tmp
+           shell: ls /tmp
+         #如果上述任务有错误，就会执行rescue中代码
+         #**block中，错误task后的task不会执行**
+         rescue: 
+           - name: debug msg
+             debug:
+               msg: "have a error"
+   ```
+
+   ```yaml
+   ---
+   - hosts: A
+     remote_user: root
+     tasks: 
+       - block: 
+         - name: ls /root
+           shell: ls /root
+         - name: false
+           command: /bin/false
+         - name: ls /tmp
+           shell: ls /tmp
+         rescue: 
+           - name: debug msg 1 
+             debug:
+               msg: "rescue 1"
+           - name: debug msg 2
+             debug:
+               msg: "rescue 2"
+         #无论失败还是成功，always都会执行
+         always: 
+           - name:
+             debug:
+               msg: "always" 
+   ```
+
+   ```yaml
+   ---
+   - hosts: A
+     remote_user: root
+     tasks: 
+       - block: 
+         - name: echo "error"
+           shell:
+             echo "error"
+           register: return_values
+         #fail模块相当于exit
+         - name: fail
+           fail:
+             msg: "fail text"
+           #"string" in "string"
+           #in判断是否在字符串内
+           when: '"error" in return_values.stdout'
+         - name: debug msg 1
+           debug:  
+             msg: "debug msg 1"
+   ```
+
+   ```bash
+   #failed_when
+   #failed_when条件成立时，对应的任务状态就为失败
+   #任务会执行，只是影响返回的状态
+   #changed_when
+   #对应的任务状态为changed
+   #当将'changed_when'直接设置为false时，对应任务的状态将不会被设置为'changed'，如果任务原本的执行状态为'changed'，最终则会被设置为'ok'，所以，上例playbook执行后，shell模块的执行状态最终为'ok'
+   ```
+
+
+
+> [ansible笔记](<http://www.zsythink.net/archives/2846>)
 
