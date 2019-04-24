@@ -113,7 +113,7 @@ with_sequence: start=2 end=10 stride=2
 count=5
 start=1 end=5 stride=1
 
-#with_tandom_choice
+#with_random_choice
 - 1
 - 2
 - 3
