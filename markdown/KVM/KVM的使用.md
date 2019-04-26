@@ -1,5 +1,3 @@
-### KVM的使用
-
 ​	基于内核的虚拟机（Kernel-based Virtual Machine，缩写为KVM）是一种用于Linux内核中的虚拟化基础设施，可将Linux内核转化为虚拟机监视器。
 
 1. 内部结构^1^：
@@ -127,7 +125,7 @@
 
    - 查看IP信息
 
-     ![ipaddr](ipaddr.PNG)
+     ![ipaddr](.\ipaddr.PNG)
 
    - virt-install内使用桥接网络
 
@@ -159,8 +157,37 @@
    virsh undefine  virtual_name #取消定义虚拟机
    rm /home/windows7/win7.qcow2 #删除虚拟磁盘
    ```
+   
+6. 桥接网络(bridge)管理
 
+   ```
+   #添加网桥
+   brctl addbr [name]
+   #显示网桥信息
+   brctl show [name]
+   #删除网桥
+   brctl delbr [name]
+   #将物理网口添加到网桥
+   brctl addif [br-name] [ph-name]
+   #brctl addif br0 eth0
+   #将物理网口从网桥中删除
+   brctl delif br0 eth0
+   ```
 
+7. **删除网桥步骤**
+
+   ```bash
+   #将物理网口从网桥中删除
+   brctl delif br0 eno1
+   #关闭网桥
+   ifdown br0 
+   #删除网桥
+   brctl delbr br0
+   #删除配置文件
+   mv /etc/sysconfig/network-scripts/ifcfg-br0 /tmp
+   ```
+
+   
 
 ## 重点
 
@@ -168,7 +195,7 @@
 
 ![绑定](bang.PNG)
 
-如果显示为上一条，一定要将新建虚拟机加上，不然网络会碰到糟心的问题。
+如果显示为上一条，一定要将新建虚拟机加上。
 
 ```bash
 brctl addif br0 vnet0 #绑定vnet0至bro接口
