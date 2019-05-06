@@ -169,6 +169,48 @@ ansible A -m debug -a 'msg={{inventory_dir}}'
 
 
 
+###### include_vars
+
+```yaml
+---
+- hosts: A 
+  remote_user: root
+  vars_files:
+    - /root/varsfile
+  tasks:
+    - name: var1, var2
+      debug: 
+        msg: "{{var1}}, {{var2}}"
+    - name: add var3
+      lineinfile: 
+        dest: /root/varsfile
+        line: "var3: var3"
+    #重新读取变量文件
+    - include_vars: "/root/varsfile"
+    #将文件中的内容赋值到变量中
+    - include_vars:
+        file: /root/varsfile
+        name: trans_var
+    #从文件夹中读取所有文件
+    - include_vars:
+        dir: /root/varsfile/
+        #设置文件名扩展，不在的扩展后缀会报错
+        extendions: [yaml, yml, json]
+        #设置递归深度
+        depth: 1
+        #设置忽略文件
+        ignore_files: ["ss.yaml"]
+        name: trans_var2
+    - name: var3
+      debug:
+        msg: "{{var3}}"
+    - name: 
+      debug: 
+        msg: "{{trans_var.var1}}"
+```
+
+
+
 
 
 > [变量](<http://www.zsythink.net/archives/2671>)
