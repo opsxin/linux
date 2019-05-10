@@ -1,3 +1,4 @@
+  适用于oh~my~zsh的主题，XShell font use Consolas，11，and coloring scheme use Xterm
 ```bash
 # Copy and self modified from ys.zsh-theme, the one of default themes in master repository
 # Clean, simple, compatible and meaningful.
