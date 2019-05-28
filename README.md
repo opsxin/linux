@@ -43,7 +43,8 @@
 │   │   │   ├── shell-1-变量.md
 │   │   │   ├── shell-2-数值计算.md
 │   │   │   ├── shell-3-中括号的区别.md
-│   │   │   └── shell-4-字符串.md
+│   │   │   ├── shell-4-字符串.md
+│   │   │   └── shell-5-尖括号的区别.md
 │   │   ├── exec解析.md
 │   │   ├── iptables
 │   │   │   ├── 021217_0051_6.png
@@ -53,8 +54,14 @@
 │   │   │   ├── iptables-4-NAT表.md
 │   │   │   ├── iptables-5-ipset.md
 │   │   │   └── linux_firewall_iptables_intro_data_flow.gif
+│   │   ├── oh-my-zsh解决数字键盘无法使用.md
 │   │   ├── ps列说明.md
+│   │   ├── vim配置.md
 │   │   └── xxf.zsh-theme.md
+│   ├── Nginx
+│   │   ├── nginx配置URL重写及判断.md
+│   │   └── root和alias的实验.md
+│   ├── README.md
 │   ├── ansible
 │   │   ├── ansible-1-基本了解.md
 │   │   ├── ansible-2-文件操作模块.md
@@ -69,7 +76,8 @@
 │   │   ├── ansible-11-判断.md
 │   │   ├── ansible-12-过滤.md
 │   │   ├── ansible-13-include.md
-│   │   └── ansible-14-galaxy.md
+│   │   ├── ansible-14-galaxy.md
+│   │   └── ansible-15-模板.md
 │   ├── docker
 │   │   ├── docker-compose.md
 │   │   └── docker集群常用命令.md
@@ -97,5 +105,5 @@
 │   └── tomcat.service
 └── update-readme.sh
 
-19 directories, 77 files
+20 directories, 84 files
 ```
