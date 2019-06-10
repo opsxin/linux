@@ -93,17 +93,23 @@
 │   └── deny
 │       └── deny-agent.conf
 ├── script
-│   ├── domain-cert-dingding.sh
-│   ├── jenkins-deploy.sh
-│   ├── send-msg-to-wechat.sh
-│   ├── service.sh
-│   ├── split-nginx-logs.sh
-│   ├── watch-sys.sh
-│   └── whois-dingding.sh
+│   ├── bash
+│   │   ├── domain-cert-dingding.sh
+│   │   ├── jenkins-deploy.sh
+│   │   ├── send-msg-to-wechat.sh
+│   │   ├── service.sh
+│   │   ├── split-nginx-logs.sh
+│   │   ├── watch-sys.sh
+│   │   └── whois-dingding.sh
+│   └── python
+│       └── xiaoshuo
+│           ├── fiction-latest-chapter.py
+│           ├── latest-essay.cfg
+│           └── requirements.txt
 ├── service
 │   ├── nginx.service
 │   └── tomcat.service
 └── update-readme.sh
 
-20 directories, 84 files
+23 directories, 87 files
 ```
