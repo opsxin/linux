@@ -59,8 +59,14 @@
 │   │   ├── vim配置.md
 │   │   └── xxf.zsh-theme.md
 │   ├── Nginx
+│   │   ├── HTTP2
+│   │   │   ├── HTTP2-1-HTTP2完整教程(HTTP2 Complete Tutorial).md
+│   │   │   ├── HTTP2-2-HTTP2的多路复用和推送.md
+│   │   │   ├── HTTP2-3-HTTP2的头压缩.md
+│   │   │   └── frame-parallelly.png
 │   │   ├── nginx配置URL重写及判断.md
-│   │   └── root和alias的实验.md
+│   │   ├── root和alias的实验.md
+│   │   └── 限制访问代理的HTTP资源(Limiting_Access_to_Proxied_HTTP_Resources).md
 │   ├── README.md
 │   ├── ansible
 │   │   ├── ansible-1-基本了解.md
@@ -111,5 +117,5 @@
 │   └── tomcat.service
 └── update-readme.sh
 
-23 directories, 87 files
+24 directories, 92 files
 ```
