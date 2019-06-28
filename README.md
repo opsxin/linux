@@ -87,10 +87,13 @@
 │   ├── docker
 │   │   ├── docker-compose.md
 │   │   └── docker集群常用命令.md
-│   └── python
-│       ├── Python Socket 编程详细介绍.md
-│       ├── Python 读取文件.md
-│       └── Python操作Redis.md
+│   ├── python
+│   │   ├── Python Socket 编程详细介绍.md
+│   │   ├── Python 读取文件.md
+│   │   └── Python操作Redis.md
+│   ├── typora-setting-1.png
+│   ├── typora-setting-2.png
+│   └── typora-setting-3.png
 ├── nginx
 │   ├── conf
 │   │   ├── google.conf
@@ -117,5 +120,5 @@
 │   └── tomcat.service
 └── update-readme.sh
 
-24 directories, 92 files
+24 directories, 95 files
 ```
