@@ -60,7 +60,7 @@ http {
     gzip_comp_level 2;
     gzip_types text/plain application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;
     gzip_vary on;
-    gzip_disable 'MSIE [1-6]\.'';
+    gzip_disable 'MSIE [1-6]\.';
 
     include ${Nginx_Path}/conf/conf.d/*.conf;
 }

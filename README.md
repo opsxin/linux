@@ -116,6 +116,10 @@
 │   │   ├── split-nginx-logs.sh
 │   │   ├── watch-sys.sh
 │   │   └── whois-dingding.sh
+│   ├── install-software
+│   │   ├── install-mysql57.sh
+│   │   ├── install-nginx.sh
+│   │   └── install-php56.sh
 │   └── python
 │       └── xiaoshuo
 │           ├── fiction-latest-chapter.py
@@ -126,5 +130,5 @@
 │   └── tomcat.service
 └── update-readme.sh
 
-26 directories, 99 files
+27 directories, 102 files
 ```

@@ -17,9 +17,11 @@
 
 set -e -u
 
+Mysql_Path="/data01/mysql"
+Mysql_Binlog_Path="/data01/mysql-binlog"
 Mysql_Community_Repository="https://mirrors.ustc.edu.cn/mysql-repo/mysql57-community-release-el7-9.noarch.rpm"
 Mysql_Config="""[client]
-socket=/data01/mysql/mysql.sock
+socket=${Mysql_Path}/mysql.sock
 default-character-set=utf8
 [mysql]
 no-auto-rehash
@@ -28,13 +30,13 @@ default-character-set=utf8
 character-set-server=utf8
 # 慢日志
 # slow_query_log = 1
-# slow_query_log_file = /data01/mysql/mysql-slow.log
+# slow_query_log_file = ${Mysql_Path}/mysql-slow.log
 # long_query_time = 1
 server-id=1
 # 开启bin_log
-log_bin=/data01/mysql-binlog/mysql-bin
-datadir=/data01/mysql
-socket=/data01/mysql/mysql.sock
+log_bin=${Mysql_Binlog_Path}/mysql-bin
+datadir=${Mysql_Path}
+socket=${Mysql_Path}/mysql.sock
 symbolic-links=0
 log-error=/var/log/mysqld.log
 pid-file=/var/run/mysqld/mysqld.pid"""
@@ -74,8 +76,8 @@ mod_mysql_conf() {
 # 数据存放的文件夹
 set_mysql_path() {
     # 数据data和bin_log存放路径
-    if [ -d "/data01/mysql" -a -d "/data01/mysql-binlog" ]; then
-        echo "/data01/mysql或/data01/mysql-binlog已存在"
+    if [ -d "${Mysql_Path}" -a -d "${Mysql_Binlog_Path}" ]; then
+        echo "数据目录已存在"
         echo "请手动修改/etc/my.cnf中的数据路径"
         exit 1
     else
