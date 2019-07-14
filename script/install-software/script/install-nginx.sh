@@ -91,7 +91,7 @@ compile_nginx() {
         cd nginx-${Ngixn_Version} 
         sh configure ${Nginx_Configure_Parameter} && make && make install 
         # 删除临时文件夹
-        cd .. && rm -rf install-nginx-tmp
+        cd ../.. && rm -rf install-nginx-tmp
     fi
 }
 
