@@ -35,6 +35,8 @@
 │   │   ├── watch-sys.sh
 │   │   └── whois-dingding.sh
 │   ├── install-software
+│   │   ├── install-docker.sh
+│   │   ├── install-java7.sh
 │   │   ├── install-mysql57.sh
 │   │   ├── install-nginx.sh
 │   │   └── install-php56.sh
@@ -48,5 +50,5 @@
 │   └── tomcat.service
 └── update-readme.sh
 
-14 directories, 33 files
+14 directories, 35 files
 ```
