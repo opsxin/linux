@@ -1,0 +1,21 @@
+---
+
+- name: unarchive nginx
+  unarchive:
+    src: "{{ nginx_archive_name }}.tgz"
+    dest: "{{ tmp_path }}"
+
+- name: unarchive openssl
+  unarchive:
+    src: "{{ openssl_archive_name }}.tgz"
+    dest: "{{ tmp_path }}"
+
+- name: unarchive pcre
+  unarchive:
+    src: "{{ pcre_archive_name }}.tgz"
+    dest: "{{ tmp_path }}"
+
+- name: unarchive zlib
+  unarchive:
+    src: "{{ zlib_archive_name }}.tgz"
+    dest: "{{ tmp_path }}"

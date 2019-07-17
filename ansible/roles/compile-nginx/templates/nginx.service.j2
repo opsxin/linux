@@ -1,0 +1,17 @@
+[Unit]
+Description=Nginx service
+After=syslog.target network.target 
+Wants=network.target
+
+[Service]
+Type=forking
+PIDFile={{ nginx_pid_path }}
+ExecStartPre={{ nginx_path }}/sbin/nginx -t
+ExecStart={{ nginx_path }}/sbin/nginx
+ExecReload={{ nginx_path }}/sbin/nginx -s reload
+ExecStop=/bin/kill -s QUIT $MAINPID
+Restart=on-failure
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

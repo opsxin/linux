@@ -16,7 +16,6 @@ export PATH=\$PATH:\$JAVA_HOME/bin"""
 mod_profile() {
     # 追加JAVA_HOME到环境变量
     echo -e "${Java_Add_Parameter}" >> /etc/profile
-    source /etc/profile
 }
 
 # 从网上下载

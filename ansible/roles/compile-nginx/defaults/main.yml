@@ -1,0 +1,12 @@
+---
+
+tmp_path: "/tmp/nginx"
+nginx_pid_path: "{{ nginx_path }}/logs/nginx.pid"
+nginx_path: "/usr/local/nginx"
+nginx_configure_parameter: "--prefix={{ nginx_path }} --user={{ __nginx_user }} \
+    --group={{ __nginx_group }} \
+    --with-http_stub_status_module --with-http_ssl_module \
+    --with-http_gzip_static_module --with-stream \
+    --with-http_sub_module --with-http_v2_module \
+    --with-zlib=../{{ zlib_archive_name }} --with-pcre=../{{ pcre_archive_name }} \
+    --with-openssl=../openssl-{{openssl_archive_name}}"

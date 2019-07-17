@@ -1,0 +1,33 @@
+---
+
+- name: include vars(CentOS)
+  include_vars: centos.yml
+  when: ansible_os_family == "RedHat"
+
+- name: include vars(Debian)
+  include_vars: debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: install c and c++ compiler(CentOS)
+  include_tasks: centos-dependent-software.yml
+  when: ansible_os_family == "RedHat"
+
+- name: install c and c++ compiler(Debian)
+  include_tasks: debian-dependent-software.yml
+  when: ansible_os_family == "Debian"
+
+- name: mkdir temporary storage path
+  include_tasks: mkdir-tmp-path.yml
+
+- name: unzrchive files
+  include_tasks: unarchive-file.yml
+
+- name: compiler nginx
+  include_tasks: compiler-nginx.yml
+
+- name: config nginx
+  include_tasks: config-nginx.yml
+
+- name: systemd nginx.service
+  include_tasks: systemd.yml
+  

@@ -1,6 +1,38 @@
 ```bash
 .
 ├── README.md
+├── ansible
+│   ├── roles
+│   │   └── compile-nginx
+│   │       ├── defaults
+│   │       │   └── main.yml
+│   │       ├── files
+│   │       │   ├── OpenSSL_1_1_1c.tgz
+│   │       │   ├── nginx-1.16.0.tgz
+│   │       │   ├── pcre-8.43.tgz
+│   │       │   └── zlib-1.2.11.tgz
+│   │       ├── handlers
+│   │       │   └── main.yml
+│   │       ├── tasks
+│   │       │   ├── centos-dependent-software.yml
+│   │       │   ├── compiler-nginx.yml
+│   │       │   ├── config-nginx.yml
+│   │       │   ├── debian-dependent-software.yml
+│   │       │   ├── main.yml
+│   │       │   ├── mkdir-tmp-path.yml
+│   │       │   ├── systemd.yml
+│   │       │   └── unarchive-file.yml
+│   │       ├── templates
+│   │       │   ├── default_server.conf.j2
+│   │       │   ├── nginx.conf.j2
+│   │       │   └── nginx.service.j2
+│   │       └── vars
+│   │           ├── centos.yml
+│   │           └── debian.yml
+│   └── ssh-keygen-copy
+│       ├── passwd.txt
+│       ├── ssh-login-2.sh
+│       └── ssh-login.sh
 ├── docker
 │   ├── aria2
 │   │   ├── docker-compose
@@ -35,11 +67,14 @@
 │   │   ├── watch-sys.sh
 │   │   └── whois-dingding.sh
 │   ├── install-software
-│   │   ├── install-docker.sh
-│   │   ├── install-java7.sh
-│   │   ├── install-mysql57.sh
-│   │   ├── install-nginx.sh
-│   │   └── install-php56.sh
+│   │   ├── README.md
+│   │   ├── script
+│   │   │   ├── install-docker.sh
+│   │   │   ├── install-java7.sh
+│   │   │   ├── install-mysql57.sh
+│   │   │   ├── install-nginx.sh
+│   │   │   └── install-php56.sh
+│   │   └── start.sh
 │   └── python
 │       └── xiaoshuo
 │           ├── fiction-latest-chapter.py
@@ -50,5 +85,5 @@
 │   └── tomcat.service
 └── update-readme.sh
 
-14 directories, 35 files
+25 directories, 59 files
 ```

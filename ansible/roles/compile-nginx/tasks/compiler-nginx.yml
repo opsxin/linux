@@ -1,0 +1,14 @@
+---
+
+- name: configure nginx and make and make install 
+  shell: 
+    cd {{ tmp_path }}/{{ nginx_archive_name }} && \
+      sh configure {{ nginx_configure_parameter }} && \
+      make && make install
+  register: result
+
+- name: remove {{ tmp_path }}
+  file: 
+    path: "{{ tmp_path }}"
+    state: absent
+  when: result.rc == 0
