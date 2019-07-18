@@ -1,0 +1,6 @@
+---
+
+mysql_path: "/data01/mysql"
+mysql_binlog_path: "/data01/mysql-binlog"
+mysql_log_path: "/var/log"
+mysql_pid_path: "/var/run/mysqld"

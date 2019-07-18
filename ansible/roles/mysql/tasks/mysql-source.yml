@@ -1,0 +1,20 @@
+--- 
+
+# 移除mariadb等包
+- name: remove mariadb
+  yum: 
+    name: "mariadb*"
+    state: absent
+
+- name: add mysql communtity repository
+  yum: 
+    name: "{{ mysql_community_repository }}"
+    state: present
+
+# 修改为国内中科大下载源
+- name: modify mysql communtity
+  replace: 
+    path: /etc/yum.repos.d/mysql-community.repo
+    regexp: "^(.*)http://repo.mysql.com(.*)"
+    replace: '\1https://mirrors.ustc.edu.cn/mysql-repo\2'
+    backup: yes

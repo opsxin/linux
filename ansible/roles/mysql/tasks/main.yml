@@ -1,0 +1,10 @@
+---
+
+- name: add mysql source
+  include_tasks: mysql-source.yml
+
+- name: install mysql
+  include_tasks: install-mysql.yml
+
+- name: configure && start mysql
+  include_tasks: config-mysql.yml

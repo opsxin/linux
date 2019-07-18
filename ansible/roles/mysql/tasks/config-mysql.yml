@@ -1,0 +1,39 @@
+---
+
+- name: ensure data path is exist
+  file: 
+    path: "{{ mysql_path }}"
+    state: directory
+    owner: mysql
+    group: mysql
+    mode: 0700
+
+- name: ensure binlog path is exist
+  file: 
+    path: "{{ mysql_binlog_path }}"
+    state: directory
+    owner: mysql
+    group: mysql
+    mode: 0700
+
+- name: ensure log path is exist
+  file: 
+    path: "{{ mysql_log_path }}"
+    state: directory
+
+- name: ensure pid path is exist
+  file: 
+    path: "{{ mysql_pid_path }}"
+    state: directory
+
+- name: disable selinux
+  selinux: 
+    policy: targeted
+    state: permissive
+
+- name: add my.cnf
+  template: 
+    src: my.cnf.j2
+    dest: /etc/my.cnf
+    mode: 0644
+  notify: reload && start mysql

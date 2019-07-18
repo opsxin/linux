@@ -1,0 +1,13 @@
+---
+ 
+# 中科大的最新版为5.7.25
+- name: install mysql from repo
+  yum: 
+    name: 
+      - mysql-community-libs-5.7.25 
+      - mysql-community-common-5.7.25 
+      - mysql-community-libs-compat-5.7.25 
+      - mysql-community-server-5.7.25 
+      - mysql-community-client-5.7.25
+    state: present
+    update_cache: yes
