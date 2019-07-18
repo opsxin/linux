@@ -1,4 +1,4 @@
-user  {{ __nginx_user }} {{ __nginx_group }};
+user  {{ nginx_user }} {{ nginx_group }};
 worker_processes  {{ ansible_processor_vcpus }};
 
 error_log  logs/error.log;
