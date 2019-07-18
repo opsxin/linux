@@ -1,7 +1,0 @@
----
-# 临时存放路径
-- name: mkdir {{ tmp_path }}
-  file: 
-    path: "{{ tmp_path }}"
-    state: directory
-    

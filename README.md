@@ -14,12 +14,11 @@
 │   │       ├── handlers
 │   │       │   └── main.yml
 │   │       ├── tasks
-│   │       │   ├── centos-dependent-software.yml
+│   │       │   ├── Debian-dependent-software.yml
+│   │       │   ├── RedHat-dependent-software.yml
 │   │       │   ├── compiler-nginx.yml
 │   │       │   ├── config-nginx.yml
-│   │       │   ├── debian-dependent-software.yml
 │   │       │   ├── main.yml
-│   │       │   ├── mkdir-tmp-path.yml
 │   │       │   ├── systemd.yml
 │   │       │   └── unarchive-file.yml
 │   │       ├── templates
@@ -27,8 +26,8 @@
 │   │       │   ├── nginx.conf.j2
 │   │       │   └── nginx.service.j2
 │   │       └── vars
-│   │           ├── centos.yml
-│   │           └── debian.yml
+│   │           ├── Debian.yml
+│   │           └── RedHat.yml
 │   └── ssh-keygen-copy
 │       ├── passwd.txt
 │       ├── ssh-login-2.sh
@@ -82,6 +81,7 @@
 │           └── requirements.txt
 ├── service
 │   ├── nginx.service
+│   ├── php.service
 │   └── tomcat.service
 └── update-readme.sh
 
