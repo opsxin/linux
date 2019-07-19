@@ -1,0 +1,22 @@
+---
+
+- name: install docker-ce
+  yum: 
+    name: 
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "RedHat"
+
+- name: install docker-ce
+  apt: 
+    name: 
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+  

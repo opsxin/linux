@@ -1,0 +1,14 @@
+---
+
+- name: ensure /etc/docker is exist
+  file: 
+    path: "/etc/docker"
+    state: directory
+
+- name: add china hub source
+  template: 
+    src: daemon.json.j2
+    dest: "/etc/docker/daemon.json"
+    mode: 0644
+    backup: yes
+  notify: restart docker.service
