@@ -1,7 +1,7 @@
 ---
 
 - name: remove old docker 
-  yum: 
+  apt: 
     name: 
       - docker 
       - docker-io
@@ -12,7 +12,7 @@
 
 
 - name: install required packages
-  yum: 
+  apt: 
     name: 
       - apt-transport-https 
       - ca-certificates 
