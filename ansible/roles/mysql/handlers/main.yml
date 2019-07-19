@@ -1,8 +1,15 @@
 --- 
 
-- name: reload && start mysql
+# CentOS mysqld 
+- name: reload && start mysql(CentOS)
   systemd: 
     name: mysqld.service
-    state: started
+    state: restarted
     enabled: yes
-    daemon-reload: yes
+
+# Debian mysql 
+- name: reload && start mysql(Debian)
+  systemd: 
+    name: mysql.service
+    state: restarted
+    enabled: yes

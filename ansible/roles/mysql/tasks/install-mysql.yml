@@ -1,7 +1,7 @@
 ---
  
 # 中科大的最新版为5.7.25
-- name: install mysql from repo
+- name: install mysql from repo(CentOS)
   yum: 
     name: 
       - mysql-community-libs-5.7.25 
@@ -11,3 +11,14 @@
       - mysql-community-client-5.7.25
     state: present
     update_cache: yes
+  when: ansible_os_family == "RedHat"
+
+- name: install mysql from repo(Debian)
+  yum: 
+    name: 
+      - mysql-server
+      - mysql-client
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+  

@@ -16,24 +16,22 @@
     group: mysql
     mode: 0700
 
-- name: ensure log path is exist
+- name: ensure error log is exist
   file: 
-    path: "{{ mysql_log_path }}"
-    state: directory
+    path: "{{ mysql_log_path }}/mysqld.log"
+    state: touch
+    owner: mysql
+    group: mysql
+    mode: 0644
 
 - name: ensure pid path is exist
   file: 
     path: "{{ mysql_pid_path }}"
     state: directory
 
+
 - name: disable selinux
   selinux: 
     policy: targeted
     state: permissive
-
-- name: add my.cnf
-  template: 
-    src: my.cnf.j2
-    dest: /etc/my.cnf
-    mode: 0644
-  notify: reload && start mysql
+  when: ansible_os_family == "RedHat"

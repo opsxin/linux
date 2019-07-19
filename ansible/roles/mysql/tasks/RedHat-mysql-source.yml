@@ -18,3 +18,4 @@
     regexp: "^(.*)http://repo.mysql.com(.*)"
     replace: '\1https://mirrors.ustc.edu.cn/mysql-repo\2'
     backup: yes
+    

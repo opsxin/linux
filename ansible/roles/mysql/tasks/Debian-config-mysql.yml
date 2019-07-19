@@ -1,0 +1,27 @@
+---
+
+- name: add mysql.cnf
+  template: 
+    src: mysql.cnf.j2
+    dest: /etc/mysql/conf.d/mysql.cnf
+    mode: 0644
+    backup: yes
+  notify: reload && start mysql(Debian)
+
+- name: add client.cnf
+  template: 
+    src: client.cnf.j2
+    dest: /etc/mysql/conf.d/client.cnf
+    mode: 0644
+    backup: yes
+  notify: reload && start mysql(Debian)
+
+- name: add mysqld.cnf
+  template: 
+    src: mysqld.cnf.j2
+    dest: /etc/mysql/mysql.conf.d/mysqld.cnf
+    mode: 0644
+    force: yes
+    backup: yes
+  notify: reload && start mysql(Debian)
+  
