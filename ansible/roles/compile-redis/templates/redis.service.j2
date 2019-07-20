@@ -1,0 +1,17 @@
+[Unit]
+Description=Redis
+Documentation=https://redis.io/documentation
+After=network.target
+ 
+[Service]
+
+User=redis
+Group=redis
+
+Type=notify
+ExecStart=/usr/local/bin/redis-server /etc/redis.conf
+RestartSec=5s
+Restart=on-failure
+ 
+[Install]
+WantedBy=multi-user.target

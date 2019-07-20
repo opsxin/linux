@@ -1,0 +1,10 @@
+---
+
+- name: compile before
+  include_tasks: redis-compile-before.yml
+
+- name: compile start
+  include_tasks: redis-compile.yml
+
+- name: compile after
+  include_tasks: redis-compile-after.yml

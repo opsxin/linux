@@ -1,0 +1,31 @@
+bind {{ redis_bind_if }}
+port {{ redis_bind_port }}
+{% if redis_unixsocket %}
+unixsocket {{ redis_unixsocket }}
+{% endif %}
+
+daemonize {{ redis_daemonize }}
+supervised {{ redis_supervised }}
+
+timeout {{ redis_timeout }}
+
+pidfile {{ redis_pidfile }}
+
+loglevel {{ redis_loglevel }}
+{% if redis_logfile %}
+logfile {{ redis_logfile }}
+{% endif %}
+
+dir {{ redis_dir }}
+{% for save in redis_rdb_save %}
+{{ save }}
+{% endfor %}
+dbfilename {{ redis_dbfilename }}
+
+appendonly {{ redis_appendonly }}
+appendfilename {{ redis_appendfilename }}
+appendfsync {{ redis_appendfsync }}
+
+{% if redis_requirepss is defined %}
+requirepass {{ redis_requirepss }}
+{% endif %}

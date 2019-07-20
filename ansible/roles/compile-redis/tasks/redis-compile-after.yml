@@ -1,0 +1,31 @@
+---
+
+- name: create redis group
+  group: 
+    name: redis
+    system: yes
+
+- name: create redis user 
+  user: 
+    name: redis
+    group: redis
+    system: yes
+    shell: /sbin/nologin
+
+- name: copy redis.service(CentOS)
+  template: 
+    src: redis.service.j2
+    dest: /usr/lib/systemd/system/redis.service
+  when: ansible_os_family == "RedHat"
+
+- name: copy redis.service(Debian)
+  template: 
+    src: redis.service.j2
+    dest: /lib/systemd/system/redis.service
+  when: ansible_os_family == "Debian"
+ 
+- name: copy redis.conf 
+  template: 
+    src: redis.conf.j2
+    dest: /etc/redis.conf
+  notify: systemd start redis.service

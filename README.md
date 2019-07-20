@@ -4,6 +4,7 @@
 ├── ansible
 │   ├── roles
 │   │   ├── compile-nginx
+│   │   ├── compile-redis
 │   │   ├── docker
 │   │   └── mysql
 │   └── ssh-keygen-copy
@@ -44,5 +45,5 @@
 │   └── tomcat.service
 └── update-readme.sh
 
-21 directories, 22 files
+22 directories, 22 files
 ```

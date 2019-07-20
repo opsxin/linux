@@ -1,0 +1,20 @@
+---
+
+- name: download latest stable redis 
+  get_url: 
+    url: "{{ stable_redis_url }}"
+    dest: /tmp/redis-stable.tgz
+  connection: local
+  run_once: true
+
+- name: install dependent sofeware
+  package: 
+    name: 
+      - make
+      - gcc
+    state: present
+
+- name: copy redis archive 
+  unarchive: 
+    src: /tmp/redis-stable.tgz 
+    dest: /tmp/
