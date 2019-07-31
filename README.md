@@ -1,27 +1,27 @@
 ```bash
 .
-├── ansible
+├── Ansible
 │   ├── roles
 │   │   ├── compile-nginx
 │   │   ├── compile-redis
 │   │   ├── docker
 │   │   └── mysql
 │   └── ssh-keygen-copy
-├── docker
+├── Docker
 │   ├── aria2
 │   │   ├── docker-compose
 │   │   └── dockerfile
 │   └── debian-ssh
-├── nginx
+├── Nginx
 │   ├── conf
 │   └── deny
-├── script
+├── Script
 │   ├── bash
 │   ├── install-software
 │   │   └── script
 │   └── python
 │       └── xiaoshuo
-└── service
+└── Systemd
 
 22 directories
 ```
