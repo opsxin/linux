@@ -38,7 +38,7 @@ do
     fi
     full_info=${HEAD}${body}${TAIL}
 
-    #域名到期时间30天，15天，小于7天报警
+    # 域名到期时间 30 天，15 天，小于 7 天报警
     if [[ ${days} -eq 30 || ${days} -eq 15 || ${days} -le 7 ]] 
     then 
         curl  -s "${DINGDING}" -H 'Content-Type: application/json' -d "${full_info}"
