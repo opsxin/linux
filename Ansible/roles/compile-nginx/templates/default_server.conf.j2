@@ -1,15 +1,23 @@
+{% for vhost in nginx_vhost %}
 server {
-    listen       80 default_server;
-    server_name  127.0.0.1 {{ ansible_default_ipv4.address }};
+    listen      {{ vhost.listen|default('80') }};
+    server_name {{ vhost.server_name|default('_') }};
 
     charset utf-8;
 
-    root   {{ nginx_path }}/html;
-    index  index.html index.htm;
+    root   {{ vhost.root }};
+    index  {{ vhost.index|default('index.html index.htm') }};
 
-    #error_page  404              /404.html;
+{% if vhost.error_page is defined %}
+    error_page  {{ vhost.error_page }};
+{% endif %}
+{% if vhost.access_log is defined %}
+    access_log {{ vhost.access_log }} main;
+{% endif %}
+{% if vhost.error_log is defined %}
+    error_log {{ vhost.error_log }};
+{% endif%}
 
-    error_page   500 502 503 504  /50x.html;
     location = /50x.html {
         root   {{ nginx_path }}/html;
     }
@@ -18,3 +26,4 @@ server {
         deny  all;
     }
 }
+{% endfor %}

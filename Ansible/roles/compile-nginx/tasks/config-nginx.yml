@@ -14,4 +14,3 @@
   template: 
     src: default_server.conf.j2
     dest: "{{ nginx_path }}/conf/conf.d/default_server.conf"
-

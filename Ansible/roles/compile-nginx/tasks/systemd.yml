@@ -1,15 +1,7 @@
 ---
 
-- name: add nginx.service(CentOS)
-  template: 
-    src: nginx.service.j2
-    dest: /usr/lib/systemd/system/nginx.service
-  when: ansible_os_family == "RedHat"
-  notify: systemctl daemon-reload && started nginx.service
-
-- name: add nginx.service(Debian)
+- name: add nginx.service
   template: 
     src: nginx.service.j2
     dest: /lib/systemd/system/nginx.service
-  when: ansible_os_family == "Debian"
-  notify: systemctl daemon-reload && started nginx.service
+  notify: systemctl started nginx.service

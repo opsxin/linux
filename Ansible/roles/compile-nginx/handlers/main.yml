@@ -1,8 +1,9 @@
 ---
 
-- name: systemctl daemon-reload && started nginx.service
+- name: systemctl started nginx.service
   systemd: 
     name: nginx.service
     state: started
     enabled: yes
     daemon-reload: yes
+    

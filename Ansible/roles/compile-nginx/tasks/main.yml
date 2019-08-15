@@ -13,18 +13,18 @@
     nginx_group: "{{ __nginx_group }}"
   when: nginx_group is not defined
 
-- name: install c and c++ compiler
-  include_tasks: "{{ ansible_os_family }}-dependent-software.yml"
+- name: install dependent sofeware
+  include_tasks: "dependent-software.yml"
 
-- name: unarchive files
+- name: unarchive install file
   include_tasks: unarchive-file.yml
 
 - name: compiler nginx
   include_tasks: compiler-nginx.yml
 
-- name: config nginx
+- name: configure nginx
   include_tasks: config-nginx.yml
 
-- name: systemd nginx.service
+- name: start nginx
   include_tasks: systemd.yml
   

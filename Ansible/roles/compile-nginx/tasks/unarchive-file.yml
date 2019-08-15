@@ -1,27 +1,18 @@
 ---
 
-# 临时存放路径
+# 创建临时存放路径
 - name: mkdir {{ tmp_path }}
   file: 
     path: "{{ tmp_path }}"
     state: directory
 
-- name: unarchive nginx
+# 解压本地文件
+- name: start unarchive file
   unarchive:
-    src: "{{ nginx_archive_name }}.tgz"
+    src: "{{ item }}"
     dest: "{{ tmp_path }}"
-
-- name: unarchive openssl
-  unarchive:
-    src: "{{ openssl_archive_name }}.tgz"
-    dest: "{{ tmp_path }}"
-
-- name: unarchive pcre
-  unarchive:
-    src: "{{ pcre_archive_name }}.tgz"
-    dest: "{{ tmp_path }}"
-
-- name: unarchive zlib
-  unarchive:
-    src: "{{ zlib_archive_name }}.tgz"
-    dest: "{{ tmp_path }}"
+  with_items: 
+    - "{{ nginx_archive_name }}.tgz"
+    - "{{ openssl_archive_name }}.tgz"
+    - "{{ pcre_archive_name }}.tgz"
+    - "{{ zlib_archive_name }}.tgz"
