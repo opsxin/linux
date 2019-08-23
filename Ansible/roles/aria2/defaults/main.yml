@@ -1,0 +1,26 @@
+# HTTPS 使用 
+aria2_rpc_secure: "false"
+aria2_rpc_certificate: "/usr/local/xxx.cer"
+aria2_rpc_private_key: "/usr/local/xxx.key"
+
+# 文件的保存路径(可使用绝对路径或相对路径), 默认: 当前启动位置
+aria2_dir: "/usr/local/aria2/files"
+
+# 从会话文件中读取下载任务
+aria2_input_file: "/usr/local/aria2/aria2.session"
+# 在Aria2退出时保存`错误/未完成`的下载任务到会话文件
+aria2_save_session: "/usr/local/aria2/aria2.session"
+
+# 启用RPC, 默认:false
+aria2_enable_rpc: "true"
+# RPC监听端口, 端口被占用时可以修改, 默认:6800
+aria2_rpc_listen_port: "6800"
+ # RPC密码
+aria2_rpc_secret: "hsin"
+
+# DHT(IPV4)文件
+aria2_dht_file_path: "/usr/local/aria2/dht.dat"
+# BT监听端口, 当端口被屏蔽时使用, 默认:6881-6999"
+aria2_listen_port: "12345-12350"
+# DHT网络监听端口, 默认:6881-6999
+aria2_dht_listen_port: "12345-12350"
