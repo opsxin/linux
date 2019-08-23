@@ -10,7 +10,7 @@ User=nobody
 Group=nogroup
 
 ExecStart=/usr/bin/aria2c --conf-path=/usr/local/aria2/aria2.conf
-ExecStop=/bin/kill -s QUIT $MAINPID
+ExecStop=/bin/kill -s INT $MAINPID
 Restart=on-failure
 PrivateTmp=true
 
