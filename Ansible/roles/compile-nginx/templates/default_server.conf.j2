@@ -12,10 +12,10 @@ server {
     error_page  {{ vhost.error_page }};
 {% endif %}
 {% if vhost.access_log is defined %}
-    access_log {{ vhost.access_log }} main;
+    access_log logs/{{ vhost.access_log }} main;
 {% endif %}
 {% if vhost.error_log is defined %}
-    error_log {{ vhost.error_log }};
+    error_log logs/{{ vhost.error_log }};
 {% endif%}
 
     location = /50x.html {
