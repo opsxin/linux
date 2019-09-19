@@ -8,7 +8,7 @@ from configparser import ConfigParser
 
 DIRNAME = os.path.dirname(os.path.abspath(__name__))
 # Server酱
-WECHAT = "https://sc.ftqq.com/"
+WECHAT = "https://sc.ftqq.com/${KEY}"
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
 HEADERS = {'user-agent': USER_AGENT, 'Accept-Language': 'zh-CN,zh;q=0.9', 'Referer': 'http://www.huanyue123.com/book/top.html'}
 
@@ -51,14 +51,16 @@ if __name__ == '__main__':
     cfg = ConfigParser()
     cfg.read(DIRNAME + '/latest-essay.cfg')
     for option in cfg.options("latest"):
+        title = cfg.get("title", option)
         URL = cfg.get("URL", option)
         lastest_essay = cfg.get("latest", option)
         data, essay_name = get_latest_essay(URL, lastest_essay)
+        send_name = title + "一一" + essay_name
         if(data == 0):
             pass
         else:
             content = get_latest_content(data)
-            code = get_html(WECHAT, "post", {'text': essay_name, 'desp': content})
+            code = get_html(WECHAT, "post", {'text': send_name, 'desp': content})
             if(code == 200):
                 cfg.set("latest", option, essay_name)
     cfg.write(open(DIRNAME + '/latest-essay.cfg', "w"))
