@@ -1,0 +1,12 @@
+---
+- hosts: all
+  remote_user: root
+  #gather_facts: no
+
+  roles:
+    - role: aria2 
+    - { role: compile-nginx, nginx_user: nginx, nginx_group: nginx }
+    - role: compile-redis
+    - role: docker
+    - role: mysql
+
