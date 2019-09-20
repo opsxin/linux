@@ -20,6 +20,10 @@ else
         echo "Port only between 0 and 99"
         exit 2
     fi
+    # 端口是否正在被使用
+    if [ $(ss -ntl | grep "8.$2" | wc -l) -gt 0 ]; then
+        echo "端口正在被使用"
+    fi
 fi
 
 if [ $1 -eq 7 ]; then
@@ -29,10 +33,12 @@ if [ $1 -eq 7 ]; then
         tomcat_7_82$2/conf/server.xml 
     # 设置 JAVA_HOME   
     sed -i "2a export JAVA_HOME=${java_7_path}" tomcat_7_82$2/bin/setclasspath.sh
+    echo "文件夹名为 tomcat_7_82$2"
 else    
     tar zxf ${tomcat_8_name} && mv ${tomcat_8_name:0:-7} tomcat_8_82$2 
     sed -i -e "s/8005/81$2/" -e "s/8080/82$2/" -e "s/8009/83$2/" \
         tomcat_8_82$2/conf/server.xml    
     sed -i "2a export JAVA_HOME=${java_8_path}" tomcat_8_82$2/bin/setclasspath.sh
+    echo "文件夹名为 tomcat_8_82$2"
 fi
 
