@@ -23,10 +23,17 @@ spring_parameter=""
 # 生产
 #spring_parameter="--spring.profiles.active=prod"
 
-# 启动端口
+# 程序启动端口
 # 防止默认端口（8080）未修改造成冲突
-# 如果未设置，将会使用 58080 端口
+# 如果未设置，将会使用随机端口
 server_port=""
+# 随机生成 [1, 32768] 内的端口
+if [ -z "${server_port}" ]; then
+    random_port=$((${RANDOM}+1))
+    while [ $(ss -antl | grep ":${random_port}\b" | wc -l) -gt 0 ]; do
+        random_port=$((${RANDOM}+1))
+    done
+fi
 
 PROCESSID=$(ps axo pid,cmd | grep "${PACKAGE_NAME}.jar" | grep -v grep | awk '{print $1}')
 
@@ -59,9 +66,11 @@ function start() {
     fi
 
     if [ "${exec_user}" == "${startup_user}" ]; then
-        nohup java ${start_parameter} -jar ${package_name}.jar ${server_port:-"58080"} ${spring_parameter} >> ${package_name}.log 2>&1 &
+        echo "端口将会使用 ${server_port:-"${random_port}"}"
+        nohup java ${start_parameter} -jar ${package_name}.jar ${server_port:-"${random_port}"} ${spring_parameter} >> ${package_name}.log 2>&1 &
     elif [ "${exec_user}" == "root" ]; then 
-        su -c "nohup java ${start_parameter} -jar ${package_name}.jar ${server_port:-"58080"} ${spring_parameter} >> ${package_name}.log 2>&1 &" ${startup_user}
+        echo "端口将会使用 ${server_port:-"${random_port}"}"
+        su -c "nohup java ${start_parameter} -jar ${package_name}.jar ${server_port:-"${random_port}"} ${spring_parameter} >> ${package_name}.log 2>&1 &" ${startup_user}
     else
         echo "请使用 ${startup_user} 用户运行程序"
         exit 1
