@@ -23,6 +23,11 @@ spring_parameter=""
 # 生产
 #spring_parameter="--spring.profiles.active=prod"
 
+# 启动端口
+# 防止默认端口（8080）未修改造成冲突
+# 如果未设置，将会使用 58080 端口
+server_port=""
+
 PROCESSID=$(ps axo pid,cmd | grep "${PACKAGE_NAME}.jar" | grep -v grep | awk '{print $1}')
 
 function status() {
@@ -54,9 +59,9 @@ function start() {
     fi
 
     if [ "${exec_user}" == "${startup_user}" ]; then
-        nohup java ${start_parameter} -jar ${package_name}.jar ${spring_parameter} >> ${package_name}.log 2>&1 &
+        nohup java ${start_parameter} -jar ${package_name}.jar ${server_port:-"58080"} ${spring_parameter} >> ${package_name}.log 2>&1 &
     elif [ "${exec_user}" == "root" ]; then 
-        su -c "nohup java ${start_parameter} -jar ${package_name}.jar ${spring_parameter} >> ${package_name}.log 2>&1 &" ${startup_user}
+        su -c "nohup java ${start_parameter} -jar ${package_name}.jar ${server_port:-"58080"} ${spring_parameter} >> ${package_name}.log 2>&1 &" ${startup_user}
     else
         echo "请使用 ${startup_user} 用户运行程序"
         exit 1
