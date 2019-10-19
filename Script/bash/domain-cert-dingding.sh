@@ -7,7 +7,7 @@ TAIL='"}}'
 
 for domain in ${DOMAINS[@]}
 do
-    expired_time=$(timeout 2 openssl s_client -connect ${domain}:443 2>/dev/null | openssl x509 -noout -enddate 2>/dev/null | cut -d= -f2)
+    expired_time=$(timeout 3 openssl s_client -servername ${domain} -connect ${domain}:443 2>/dev/null | openssl x509 -noout -enddate 2>/dev/null | sed "s/notAfter=\(.*\)/\1/")
     expired_time_format=$(date -d "${expired_time}" "+%Y/%m/%d %H:%M:%S")
 
     d1=$(date +%s -d ${expired_time_format%\ *})
