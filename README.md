@@ -7,6 +7,7 @@
 │   │   ├── compile-redis
 │   │   ├── docker
 │   │   └── mysql
+│   ├── setup.yml
 │   └── ssh-keygen-copy
 │       ├── passwd.txt
 │       ├── ssh-login-2.sh
@@ -15,8 +16,12 @@
 │   ├── aria2
 │   │   ├── docker-compose
 │   │   └── dockerfile
-│   └── debian-ssh
-│       └── debian-ssh.dockerfile
+│   ├── centos-ssh-python
+│   │   ├── Dockerfile
+│   │   └── README.md
+│   └── debian-ssh-python
+│       ├── Dockerfile
+│       └── README.md
 ├── Nginx
 │   ├── conf
 │   │   ├── google.conf
@@ -51,5 +56,5 @@
 │   └── tomcat.service
 └── update-readme.sh
 
-23 directories, 27 files
+24 directories, 31 files
 ```
