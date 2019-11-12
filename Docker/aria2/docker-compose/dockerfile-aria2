@@ -1,4 +1,0 @@
-FROM vimagick/aria2
-
-RUN mkdir /var/www && chown aria2:aria2 /var/www
-
