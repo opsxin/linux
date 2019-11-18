@@ -1,9 +1,0 @@
----
-
-yum_repository_url: 
-  https://download.docker.com/linux/centos/docker-ce.repo
-apt_key_url:
-  https://download.docker.com/linux/debian/gpg
-apt_repository: >-
-  deb [arch=amd64] https://download.docker.com/linux/debian 
-  {{ ansible_distribution_release }} stable
