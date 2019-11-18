@@ -1,6 +1,0 @@
-- name: systemctl start aria2
-  systemd: 
-    name: aria2.service
-    state: started
-    enabled: yes
-    daemon_reload: yes
