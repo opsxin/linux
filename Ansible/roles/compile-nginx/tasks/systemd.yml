@@ -1,7 +1,0 @@
----
-
-- name: add nginx.service
-  template: 
-    src: nginx.service.j2
-    dest: /lib/systemd/system/nginx.service
-  notify: systemctl started nginx.service

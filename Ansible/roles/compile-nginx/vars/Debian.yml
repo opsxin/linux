@@ -1,8 +1,0 @@
----
-
-nginx_archive_name: "nginx-1.16.0"
-openssl_archive_name: "OpenSSL_1_1_1c"
-pcre_archive_name: "pcre-8.43"
-zlib_archive_name: "zlib-1.2.11"
-__nginx_user: "www-data"
-__nginx_group: "www-data"
