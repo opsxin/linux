@@ -14,6 +14,11 @@ last_month=$(date -d last-month +%Y-%m)
 
 move_logs() {
     cd ${logs_dir}
+    
+    if [ ! -d "${backed_logs_dir}/$1" ]; then
+        mkdir -p ${backed_logs_dir}/$1
+    fi
+    
     for i in $(ls *.${date_yesterday}* 2>/dev/null)
     do
         mv ${i} ${backed_logs_dir}/$1
@@ -37,7 +42,7 @@ for logs_dir in ${logs_dirs[@]}
 do
     backed_logs_dir="${logs_dir}/backed_logs"
 
-	# 如果是 1 号，则将上个月的日志打包
+    # 如果是 1 号，则将上个月的日志打包
     if [ ${date_d} -eq 01 ]; then
         move_logs ${last_month}
         tar_logs
