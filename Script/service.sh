@@ -67,10 +67,10 @@ function start() {
 
     if [ "${exec_user}" == "${startup_user}" ]; then
         echo "端口将会使用 ${server_port:-"${random_port}"}"
-        nohup java ${start_parameter} -jar ${package_name}.jar ${server_port:-"${random_port}"} ${spring_parameter} >> ${package_name}.log 2>&1 &
+        nohup java ${start_parameter} -jar ${package_name}.jar --server.port=${server_port:-"${random_port}"} ${spring_parameter} >> ${package_name}.log 2>&1 &
     elif [ "${exec_user}" == "root" ]; then 
         echo "端口将会使用 ${server_port:-"${random_port}"}"
-        su -c "nohup java ${start_parameter} -jar ${package_name}.jar ${server_port:-"${random_port}"} ${spring_parameter} >> ${package_name}.log 2>&1 &" ${startup_user}
+        su -c "nohup java ${start_parameter} -jar ${package_name}.jar --server.port=${server_port:-"${random_port}"} ${spring_parameter} >> ${package_name}.log 2>&1 &" ${startup_user}
     else
         echo "请使用 ${startup_user} 用户运行程序"
         exit 1
