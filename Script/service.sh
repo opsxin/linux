@@ -78,7 +78,7 @@ function start() {
 }
 
 function stop() {
-    if [ -n ${PROCESSID} ]; then
+    if [ -n "${PROCESSID}" ]; then
         kill ${PROCESSID}
     fi
 }
