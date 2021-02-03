@@ -28,7 +28,7 @@ class Bark():
                          "body": self.bark_body, "category": self.bark_category}
         params: dict = {"automaticallyCopy": self.bark_automatically_copy,
                         "copy": self.bark_copy, "url": self.bark_url,
-                        "isArchive": self.bark_archive}
+                        "isArchive": self.bark_archive, "sound": self.bark_sound}
         try:
             response = requests.post(url, data=payload, params=params).json()
             return response.get('code', 400)
