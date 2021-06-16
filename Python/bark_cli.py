@@ -15,7 +15,7 @@ class Bark():
     bark_key: str
     bark_title: str
     bark_body: str
-    bark_category: str
+    bark_group: str
     bark_automatically_copy: int
     bark_copy: str
     bark_url: str
@@ -25,10 +25,11 @@ class Bark():
     def send_message(self):
         url: str = f'{self.request_scheme}://{self.request_host}:{self.request_port}/{self.bark_key}/'
         payload: dict = {"title": self.bark_title,
-                         "body": self.bark_body, "category": self.bark_category}
+                         "body": self.bark_body}
         params: dict = {"automaticallyCopy": self.bark_automatically_copy,
                         "copy": self.bark_copy, "url": self.bark_url,
-                        "isArchive": self.bark_archive, "sound": self.bark_sound}
+                        "isArchive": self.bark_archive, "sound": self.bark_sound,
+                        "group": self.bark_group}
         try:
             response = requests.post(url, data=payload, params=params).json()
             return response.get('code', 400)
@@ -52,8 +53,8 @@ def main():
                         help='Bark Message Title', dest='bark_title')
     parser.add_argument('-b', '--body', type=str, required=True,
                         help='Bark Message Body', dest='bark_body')
-    parser.add_argument('-c', '--category', type=str, default='',
-                        help='Bark Message Category', dest='bark_category')
+    parser.add_argument('--group', type=str, default='default',
+                        help='Bark Message Group', dest='bark_group')
     parser.add_argument('--autocopy', type=int, default=0, choices=[0, 1],
                         help='Bark Parameter Automatically Copy, default=0',
                         dest='bark_automatically_copy')
@@ -79,7 +80,7 @@ def main():
 
     bark = Bark(request_scheme=args.request_scheme, request_host=args.request_host,
                 request_port=args.request_port, bark_key=bark_key, bark_title=args.bark_title,
-                bark_body=args.bark_body, bark_category=args.bark_category,
+                bark_body=args.bark_body, bark_group=args.bark_group,
                 bark_automatically_copy=args.bark_automatically_copy, bark_copy=args.bark_copy,
                 bark_url=args.bark_url, bark_archive=args.bark_archive, bark_sound=args.bark_sound)
     if bark.send_message() == 200:
